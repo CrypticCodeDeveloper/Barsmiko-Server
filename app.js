@@ -19,11 +19,14 @@ console.log(__dirname)
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser())
 
+const origin = process.env.NODE_ENV === "development" ?
+"http://localhost:5173" :
+process.env.LIVE_API_URL;
 
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin,
 }))
 
 app.use('/', indexRouter);
