@@ -13,7 +13,7 @@ const uploadToCloudinary = async (path) => {
 }
 
 const getAllPosts = async (req, res) => {
-    const blogs = await Blog.find({}).populate("author")
+    const blogs = await Blog.find({}).populate("author").sort({ createdAt: -1 })
     res.status(200).json({
         data: {
             message: "All blog posts",
